@@ -1,120 +1,184 @@
+/* Reset básico */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-  }
-  
-  body {
-    font-family: 'Arial', sans-serif;
-    background: linear-gradient(135deg, #2d3a46, #1c252f); /* Degradê escuro */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f0f2f5;
+    color: #333;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Modos claro/escuro */
+body.dark-mode {
+    background-color: #1e1e2f;
+    color: #f0f0f0;
+}
+
+/* Containers */
+.container {
+    max-width: 400px;
+    width: 90%;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+/* Header */
+header {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    color: #fff;
-  }
-  
-  .container {
-    background-color: rgb(255 255 255 / 30%);
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgb(0 0 0 / 79%);
-    width: 100%;
-    max-width: 500px;
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  h1 {
-    font-size: 40px;
-    margin-bottom: 20px;
-    color: #000000;
-    font-weight: 600;
-  }
-  
-  .form-group {
-    margin-bottom: 20px;
-    text-align: left;
-  }
-  
-  label {
-    display: block;
-    font-size: 1.1rem;
-    margin-bottom: 8px;
-  }
-  
-  input {
-    width: 100%;
-    padding: 12px;
-    font-size: 1rem;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    box-sizing: border-box;
-    margin-top: 5px;
-    background-color: #fff;
-    color: #333;
-    transition: border-color 0.3s ease;
-  }
-  
-  input:focus {
-    border-color: #4CAF50;
-    outline: none;
-  }
-  
-  button {
-    width: 100%;
-    padding: 12px;
-    background-color: #4CAF50;
-    color: #fff;
-    font-size: 1.1rem;
+    padding: 15px 0;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#toggleMode {
+    background: none;
     border: none;
-    border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-  }
-  
-  button:hover {
-    background-color: #45a049;
-    transform: scale(1.05); /* Efeito de aumento no hover */
-  }
-  
-  #resultado {
-    margin-top: 20px;
-    font-size: 25px;
-    font-weight: bold;
-    color: #000000;
-    display: none;
-    transition: opacity 0.5s ease;
-  }
-  
-  footer {
-    position: absolute;
-    bottom: 20px;
-    text-align: center;
+    font-size: 1.5rem;
+    transition: transform 0.3s;
+}
+
+#toggleMode:hover {
+    transform: rotate(20deg);
+}
+
+/* Card */
+.card {
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 25px 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+body.dark-mode .card {
+    background-color: #2c2c3e;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+}
+
+/* Form */
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+input[type="number"] {
     width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    transition: border-color 0.3s, background-color 0.3s, color 0.3s;
+}
+
+input[type="number"]:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+body.dark-mode input[type="number"] {
+    background-color: #3a3a4e;
+    border-color: #555;
+    color: #f0f0f0;
+}
+
+/* Botão */
+button#calcular {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+button#calcular:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+body.dark-mode button#calcular {
+    background-color: #3399ff;
+}
+
+body.dark-mode button#calcular:hover {
+    background-color: #1a73e8;
+}
+
+/* Resultado */
+.resultado {
+    margin-top: 25px;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-align: center;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Faixas de IMC */
+.resultado.abaixo-peso {
+    background-color: #ffeeba;
+    color: #856404;
+}
+
+.resultado.normal {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.resultado.sobrepeso {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.resultado.obesidade {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+/* Footer */
+footer {
+    margin-top: auto;
+    padding: 15px 0;
+    text-align: center;
     font-size: 0.9rem;
+    color: #777;
+}
+
+body.dark-mode footer {
     color: #aaa;
-  }
-  
-  footer p {
-    margin-top: 20px;
-  }
-  
-  .container:hover {
-    transform: translateY(-5px); /* Efeito de elevação ao passar o mouse */
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3); /* Efeito de sombra mais forte */
-  }
-  
-  @keyframes fadeIn {
-    0% {
-      opacity: 0;
+}
+
+/* Responsividade */
+@media (max-width: 500px) {
+    .card {
+        padding: 20px 15px;
     }
-    100% {
-      opacity: 1;
+
+    h1 {
+        font-size: 1.5rem;
     }
-  }
-  
-  .container {
-    animation: fadeIn 1s ease-out;
-  }
-  
+}
